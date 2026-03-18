@@ -34,16 +34,12 @@ function resetGame(){
 }
 const music = document.getElementById("bgMusic");
 
-// Force play (handles most browsers)
+// Try autoplay
 window.addEventListener("load", () => {
   music.play().catch(() => {});
 });
 
-// Backup: start on ANY interaction
+// Start on first click (if blocked)
 document.addEventListener("click", () => {
-  music.play().catch(() => {});
-});
-
-document.addEventListener("mousemove", () => {
   music.play().catch(() => {});
 });
