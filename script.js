@@ -32,14 +32,3 @@ function resetGame(){
 
   finalMsg.style.display = "none";
 }
-const music = document.getElementById("bgMusic");
-
-// Try autoplay
-window.addEventListener("load", () => {
-  music.play().catch(() => {});
-});
-
-// Start on first click (if blocked)
-document.addEventListener("click", () => {
-  music.play().catch(() => {});
-});

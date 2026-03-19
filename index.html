@@ -144,33 +144,11 @@ cutieee love youuuhhh😛😭
 <button id="restartBtn">Restart Game 🔁</button>
 </div>
 
-<audio id="bgMusic" autoplay loop>
-  <source src="Tu-na-samjhe.mp3" type="audio/autoplay">
+<audio id="bgMusic" loop>
+  <source src="Tu-na-samjhe.mp3 type=">
 </audio>
 
 <script>
-/* -------- MUSIC -------- */
-const music = document.getElementById("bgMusic");
-
-let musicStarted = false;
-
-function startMusic(){
-  if(!musicStarted){
-    music.currentTime = 0;
-    music.muted = false;
-    music.play().catch(err => console.log(err));
-    musicStarted = true;
-  }
-}
-
-music.muted = true;
-
-// ONLY start after real interaction
-document.addEventListener("click", startMusic);
-document.addEventListener("mousemove", startMusic);
-
-
-
 /* -------- FLOATING HEARTS -------- */
 function createBackgroundHeart(){
   const heart = document.createElement("div");
