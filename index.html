@@ -144,9 +144,25 @@ cutieee love youuuhhh😛😭
 <button id="restartBtn">Restart Game 🔁</button>
 </div>
 
-<audio controls autoplay loop>
+<audio id="bgMusic" autoplay loop muted>
   <source src="Tu-na-samjhe.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+// Unmute & play on first interaction (needed for browsers)
+document.addEventListener("click", () => {
+  music.muted = false;
+  music.play();
+}, { once: true });
+
+// Restart function (optional if you want later)
+function restartMusic() {
+  music.currentTime = 0;
+  music.play();
+}
+</script>
 
 <script>
 /* -------- FLOATING HEARTS -------- */
