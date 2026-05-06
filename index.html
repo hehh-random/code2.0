@@ -65,7 +65,7 @@ button:hover{transform:scale(1.1);}
   z-index:5;
 }
 
-/* ✅ FINAL MESSAGE (SCROLLABLE + SMALLER) */
+/* ✅ FINAL MESSAGE (FIXED HEIGHT = NO JUMPING) */
 #finalMsg{
   position:fixed;
   top:50%;
@@ -82,9 +82,12 @@ button:hover{transform:scale(1.1);}
   z-index:10;
 
   max-width:320px;
-  max-height:70vh;
+  max-height:400px; /* ✅ fixed instead of vh */
   overflow-y:auto;
+
   line-height:1.4;
+
+  -webkit-overflow-scrolling: touch; /* smooth mobile scroll */
 }
 
 /* RESTART BUTTON */
@@ -144,7 +147,7 @@ button:hover{transform:scale(1.1);}
     max-width:90%;
     font-size:14px;
     padding:15px 18px;
-    max-height:65vh;
+    max-height:350px; /* stable on phones */
   }
 }
 </style>
