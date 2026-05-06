@@ -65,33 +65,35 @@ button:hover{transform:scale(1.1);}
   z-index:5;
 }
 
-/* FINAL MESSAGE */
+/* ✅ FIXED FINAL MESSAGE (smaller + cleaner) */
 #finalMsg{
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
   background:white;
-  padding:30px 40px;
-  border-radius:25px;
-  font-size:24px;
+  padding:20px 25px; /* reduced */
+  border-radius:20px;
+  font-size:16px; /* reduced */
   color:#ff6f91;
   text-align:center;
   display:none;
   box-shadow:0 0 20px rgba(0,0,0,0.2);
   z-index:10;
+  max-width:320px; /* keeps box compact */
+  line-height:1.4;
 }
 
 /* RESTART BUTTON */
 #restartBtn{
-  margin-top:20px;
-  padding:10px 20px;
+  margin-top:15px;
+  padding:8px 16px;
   border:none;
   border-radius:20px;
   background:#ff6f91;
   color:white;
-  font-size:16px;
-  cursor:pointer;
+  font-size:14px;
+  cursor: pointer;
   position:relative;
 }
 #restartBtn:hover{
@@ -125,7 +127,7 @@ button:hover{transform:scale(1.1);}
   100%{transform:translateY(-100vh) rotate(45deg);opacity:0;}
 }
 
-/* ✅ MOBILE FIXES ONLY */
+/* MOBILE */
 @media (max-width:600px){
   .card{
     padding:20px;
@@ -150,7 +152,7 @@ button:hover{transform:scale(1.1);}
 <button id="mainBtn">Catch Me👹</button>
 
 <div id="finalMsg">
-mile Jada tem😛 toh NAHI hua but fhir bhi  esa lgta h jese tuje mahinoo / saaalooo se janti hougii, pyaraaaa tohh haiii tu, sote hue toh aur bhi jadaaa cutieeee lgtaaa haiii😗
+mile Jada tem😛 toh NAHI hua but fhir bhi esa lgta h jese tuje mahinoo / saaalooo se janti hougii, pyaraaaa tohh haiii tu, sote hue toh aur bhi jadaaa cutieeee lgtaaa haiii😗
 manaa todhaaa😏  kalesh krti hu but fhir maja bhi ata hai n (agr chup na ho jao toh🥲),.....kabhi kabhi Jada hi miss krti hu {kabhi kabbhiii= hamesha😭} , toh fhir kalesh toh krna padhegaaaa n meriiii jaaannnnn😭, 
 ik nakhre Kar ti hu, toh ⇝mana Liya kr n fhir 😒, mehhhh nakhre NAHI krugi toh konnn karegaaaa.. aur tu merko NAHI manayega toh kisko manayega😒.
 mood swings bhi CHLTE Rehte but ky kr sakti hu uska - chup chap jhelna apko hi padhegaaa😒.
@@ -183,7 +185,6 @@ function restartMusic() {
 </script>
 
 <script>
-/* -------- FLOATING HEARTS -------- */
 function createBackgroundHeart(){
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -194,8 +195,6 @@ function createBackgroundHeart(){
 }
 setInterval(createBackgroundHeart,300);
 
-
-/* -------- GAME VARIABLES -------- */
 let runCount = 0;
 let clickCount = 0;
 
@@ -207,11 +206,9 @@ const finalMsg = document.getElementById("finalMsg");
 const mainBtn = document.getElementById("mainBtn");
 const restartBtn = document.getElementById("restartBtn");
 
-const padding = 20; // ✅ keeps buttons inside screen
+const padding = 20;
 
-/* -------- RESET GAME -------- */
 function resetGame(){
-
   runCount = 0;
   clickCount = 0;
 
@@ -223,17 +220,14 @@ function resetGame(){
     }
   });
 
-  mainBtn.style.display = "block";
+  mainBtn.hidden = false;
   mainBtn.style.left = "45%";
   mainBtn.style.top = "60%";
 
   finalMsg.style.display = "none";
 }
 
-
-/* -------- BUTTON RUN AWAY -------- */
 document.addEventListener("mousemove",function(e){
-
   if(clickCount >= maxClicks) return;
 
   const rect = mainBtn.getBoundingClientRect();
@@ -244,20 +238,14 @@ document.addEventListener("mousemove",function(e){
   const isMobile = window.innerWidth < 600;
 
   if(distX < (isMobile ? 60 : 100) && distY < (isMobile ? 50 : 80) && runCount < maxRuns){
-
     runCount++;
 
     mainBtn.style.left = Math.random()*(window.innerWidth-120-padding)+"px";
     mainBtn.style.top = Math.random()*(window.innerHeight-60-padding)+"px";
-
   }
-
 });
 
-
-/* -------- CLICK GAME -------- */
 document.addEventListener("click",function(e){
-
   if(e.target.tagName !== "BUTTON") return;
   if(e.target.id === "restartBtn") return;
   if(clickCount >= maxClicks) return;
@@ -274,30 +262,20 @@ document.addEventListener("click",function(e){
   if(clickCount >= maxClicks){
     celebrate();
   }
-
 });
 
-
-/* -------- DUPLICATE BUTTON -------- */
 function duplicateButton(){
-
   const btn = document.createElement("button");
-
   btn.innerText = "Catch Me 😏";
 
   btn.style.left = Math.random()*(window.innerWidth-120-padding)+"px";
   btn.style.top = Math.random()*(window.innerHeight-60-padding)+"px";
 
   document.body.appendChild(btn);
-
 }
 
-
-/* -------- HEART EXPLOSION -------- */
 function createHeart(x,y){
-
   for(let i=0;i<10;i++){
-
     const heart = document.createElement("div");
     heart.className = "heart";
 
@@ -307,40 +285,28 @@ function createHeart(x,y){
     heart.style.animationDuration = (Math.random()*2+1.5)+"s";
 
     document.body.appendChild(heart);
-
     setTimeout(()=>heart.remove(),3000);
-
   }
-
 }
 
-
-/* -------- CELEBRATION -------- */
 function celebrate(){
-
   document.querySelectorAll("button").forEach(btn=>{
     if(btn !== restartBtn && btn !== mainBtn){
       btn.remove();
     }
   });
 
-  mainBtn.style.display = "none";
+  mainBtn.hidden = true;
 
   for(let i=0;i<80;i++){
     createHeart(Math.random()*window.innerWidth, Math.random()*window.innerHeight);
   }
 
   finalMsg.style.display = "block";
-
 }
 
-
-/* -------- RESTART BUTTON -------- */
 restartBtn.addEventListener("click", resetGame);
-
 </script>
 
 </body>
 </html>
-
-
